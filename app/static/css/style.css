@@ -1,0 +1,18 @@
+body {
+    background-color: lightblue;
+}
+
+.title {
+    text-align: center;
+}
+
+.product_table {
+    border-collapse: collapse;
+    width: 100%;
+    border: black;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 7 Plus",
+    "description": "Apple, 32GB, RAM: 3GB, iOS13",
+    "price": 17000000,
+    "image": "images/p1.png",
+    "category_id": 1
+  },
+  {
+    "id": 2,
+    "name": "iPad Pro 2020",
+    "description": "Apple, 128GB, RAM: 6GB",
+    "price": 37000000,
+    "image": "images/p2.png",
+    "category_id": 2
+  },
+  {
+    "id": 3,
+    "name": "Galaxy Note 10 Plus",
+    "description": "Samsung, 64GB, RAML: 6GB",
+    "price": 24000000,
+    "image": "images/p3.png",
+    "category_id": 1
+  },
+  {
+    "id": 4,
+    "name": "Product 4",
+    "description": "Description for product 4, 32GB, RAM: 6GB, iOS13",
+    "price": 21000000,
+    "image": "images/p4.png",
+    "category_id": 2
+  },
+  {
+    "id": 5,
+    "name": "Product 5",
+    "description": "Description for product 5, 32GB, RAM: 7GB, iOS13",
+    "price": 22000000,
+    "image": "images/p5.png",
+    "category_id": 2
+  },
+  {
+    "id": 6,
+    "name": "Product 6",
+    "description": "Description for product 6, 32GB, RAM: 8GB, iOS13",
+    "price": 23000000,
+    "image": "images/p6.png",
+    "category_id": 1
+  },
+  {
+    "id": 7,
+    "name": "Product 7",
+    "description": "Description for product 7, 32GB, RAM: 9GB, iOS13",
+    "price": 24000000,
+    "image": "images/p7.png",
+    "category_id": 2
+  },
+  {
+    "id": 8,
+    "name": "Product 8",
+    "description": "Description for product 8, 32GB, RAM: 10GB, iOS13",
+    "price": 25000000,
+    "image": "images/p8.png",
+    "category_id": 1
+  },
+  {
+    "id": 9,
+    "name": "Product 9",
+    "description": "Description for product 9, 32GB, RAM: 11GB, iOS13",
+    "price": 26000000,
+    "image": "images/p9.png",
+    "category_id": 1
+  },
+  {
+    "id": 10,
+    "name": "Product 10",
+    "description": "Description for product 10, 32GB, RAM: 12GB, iOS13",
+    "price": 27000000,
+    "image": "images/p10.png",
+    "category_id": 2
+  },
+  {
+    "id": 11,
+    "name": "Product 11",
+    "description": "Description for product 11, 32GB, RAM: 13GB, iOS13",
+    "price": 28000000,
+    "image": "images/p11.png",
+    "category_id": 2
+  },
+  {
+    "id": 12,
+    "name": "Product 12",
+    "description": "Description for product 12, 32GB, RAM: 14GB, iOS13",
+    "price": 29000000,
+    "image": "images/p12.png",
+    "category_id": 1
+  },
+  {
+    "id": 13,
+    "name": "Product 13",
+    "description": "Description for product 13, 32GB, RAM: 15GB, iOS13",
+    "price": 30000000,
+    "image": "images/p13.png",
+    "category_id": 2
+  },
+  {
+    "id": 14,
+    "name": "Product 14",
+    "description": "Description for product 14, 32GB, RAM: 16GB, iOS13",
+    "price": 31000000,
+    "image": "images/p14.png",
+    "category_id": 2
+  },
+  {
+    "id": 15,
+    "name": "Product 15",
+    "description": "Description for product 15, 32GB, RAM: 17GB, iOS13",
+    "price": 32000000,
+    "image": "images/p15.png",
+    "category_id": 1
+  }
+]
