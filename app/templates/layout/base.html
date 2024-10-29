@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/cart.js')}}"></script>
     {% block css %} {% endblock %}
     {% block js %} {% endblock %}
 </head>
@@ -23,7 +25,6 @@
     {% endblock %}
 
     {% block content %} {% endblock %}
-
 
     {% block footer %}
         {% include 'layout/footer.html' %}

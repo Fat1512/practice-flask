@@ -15,13 +15,35 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link  {% if 'category_id' not in request.args %} active {% endif %}" href="/">Trang chu</a>
+                <a class="nav-link  {% if 'category_id' not in request.args %} active {% endif %}" href="/">Trang
+                    chu</a>
             </li>
             {% for cate in categories %}
             <li class="nav-item">
-                <a class="nav-link  {% if 'category_id' in request.args and request.args.category_id|int == cate.id %} active {% endif %}" href="{{ url_for('index', category_id=cate.id)}}">{{cate.name}}</a>
+                <a class="nav-link  {% if 'category_id' in request.args and request.args.category_id|int == cate.id %} active {% endif %}"
+                   href="{{ url_for('index', category_id=cate.id)}}">{{cate.name}}</a>
             </li>
             {% endfor %}
+
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('index') }}">{{ current_user.username }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('logout') }}">Dang xuat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Gio hang</a>
+                <span class="counter_element">0</span>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('register') }}">Dang ky</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{ url_for('login') }}">Dang Nhap</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
     <form class="form-inline" action="/">

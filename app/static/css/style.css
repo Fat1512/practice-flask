@@ -14,5 +14,6 @@ body {
 
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 100px auto;
+    padding: 100px 100px;
 }

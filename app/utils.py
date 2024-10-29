@@ -1,8 +1,8 @@
 from app import app, db
-from app.model import Category, Product
+from app.model import Category, Product, User
 from sqlalchemy import or_
 import json, os
-
+import hashlib
 def load_json(path):
     with open(path, "r") as f:
         return json.load(f)
@@ -37,5 +37,73 @@ def load_file_product_to_db():
         db.session.add(product)
     db.session.commit()
 
-def count_product(products):
-    return Product.query.filter(Product.active.__eq__(True)).filter(Product.id in products.id).count()
+def count_product():
+    return Product.query.filter(Product.active.__eq__(True)).count()
+
+def add_user(name, username, password, **kwargs):
+    password = str(hashlib.md5(password.strip().encode("utf-8")).hexdigest())
+    user = User(name=name.strip(),
+                username=username.strip(),
+                password=password,
+                avatar=kwargs.get("avatar"),
+                email=kwargs.get("email"))
+    db.session.add(user)
+    db.session.commit()
+
+def check_login(username, password):
+    if username and password:
+        password = str(hashlib.md5(password.strip().encode("utf-8")).hexdigest())
+        return User.query.filter(User.username.__eq__(username.strip()),
+                                 User.password.__eq__(password.strip())).first()
+
+def get_user_by_id(user_id):
+    return User.query.get(int(user_id))
+
+def count_cart(cart):
+    total_amount, total_item = 0, 0
+    for c in cart.values():
+        total_amount += c['price']
+        total_item += c['quantity']
+    return {
+        'total_amount': total_amount,
+        'total_item': total_item
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
