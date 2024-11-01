@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from urllib.parse import quote
 import cloudinary
 
 app = Flask(__name__)
 app.secret_key = '!@#!%!@#!@QDAFSDadd214FESF!#!@#@!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:15122004@localhost:3306/labsaledb?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:%s@localhost:3306/labsaledb?charset=utf8mb4' % quote('Admin@123')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['PAGE_SIZE'] = 6
 
