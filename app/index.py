@@ -1,4 +1,7 @@
+from functools import wraps
+
 import utils, math
+import dao
 from flask import render_template, request, redirect, url_for, session, jsonify
 from app import app, login
 from flask_login import login_user, logout_user
@@ -6,27 +9,39 @@ import cv2
 from pyzbar.pyzbar import decode
 import asyncio
 
+
+# def login_required(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+#         if not session.get("user"):
+#             return redirect(url_for('index', next=request.url))
+#         return f(*args, **kwargs)
+#     return decorated_function
+
+
 @app.context_processor
 def common_response():
     return {
-        'categories': utils.load_categories()
+        'categories': dao.load_categories()
     }
 
-#get called whenever login successfully
+
+# get called whenever login successfully
 @login.user_loader
 def user_load(user_id):
-    return utils.get_user_by_id(user_id=user_id)
+    return dao.get_user_by_id(user_id=user_id)
+
 
 @app.route('/products')
 def products():
     category_id = request.args.get('category_id')
-    products = utils.load_products(category_id)
+    products = dao.load_products(category_id)
     return render_template("products.html", products=products)
 
 
 @app.route('/products/<int:product_id>')
 def product(product_id):
-    product = list(utils.load_products_by_id(product_id))[0]
+    product = list(dao.load_products_by_id(product_id))[0]
     return render_template("product_detail.html", product=product)
 
 
@@ -48,12 +63,12 @@ def register():
             # if avatar:
             # res = cloudinary.uploader.upload(avatar)
             # avatar_url = res['secure_url']
-            utils.add_user(name=name,
-                           username=username,
-                           email=email,
-                           password=password,
-                           repeat_password=repeat_password,
-                           avatar=avatar_url)
+            dao.add_user(name=name,
+                         username=username,
+                         email=email,
+                         password=password,
+                         repeat_password=repeat_password,
+                         avatar=avatar_url)
             return redirect(url_for('index'))
         else:
             err_msg = "Sai mat khau"
@@ -69,7 +84,7 @@ def login():
     if request.method.__eq__("POST"):
         username = request.form['username']
         password = request.form['password']
-        user = utils.check_login(username, password)
+        user = dao.check_login(username, password)
 
         if user:
             login_user(user)
@@ -79,18 +94,20 @@ def login():
         return render_template("index.html")
     return render_template("login.html", err_msg=err_msg)
 
+
 @app.route("/user/logout")
 def logout():
     logout_user()
     return redirect(url_for("index"))
+
 
 @app.route("/")
 def index():
     category_id = request.args.get('category_id')
     page = int(request.args.get('page', 1))
 
-    products = utils.load_products(category_id=category_id, page=page)
-    total_product = utils.count_product()
+    products = dao.load_products(category_id=category_id, page=page)
+    total_product = dao.count_product()
 
     return render_template("index.html",
                            products=products,
@@ -144,6 +161,7 @@ def cart():
         }
     session['cart'] = cart
     return jsonify(utils.count_cart(cart))
+
 
 if __name__ == "__main__":
     from app.admin import *
