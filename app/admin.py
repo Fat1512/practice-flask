@@ -6,7 +6,6 @@ from app.model import Category, Product
 
 admin = Admin(app=app, name="My Website", template_mode='bootstrap4', url='/admin')
 
-
 #comment
 class ProductView(ModelView):
     can_view_details = True

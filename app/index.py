@@ -2,6 +2,9 @@ import utils, math
 from flask import render_template, request, redirect, url_for, session, jsonify
 from app import app, login
 from flask_login import login_user, logout_user
+import cv2
+from pyzbar.pyzbar import decode
+import asyncio
 
 @app.context_processor
 def common_response():
@@ -92,6 +95,32 @@ def index():
     return render_template("index.html",
                            products=products,
                            pages=math.ceil(total_product / app.config['PAGE_SIZE']))
+
+@app.route("/api/barcode")
+def barcode():
+
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 640)
+    cap.set(4, 480)
+    camera = True
+    print("day ne")
+
+    while camera == True:
+        success, frame = cap.read()
+        x = cv2.waitKey(50)
+        print(x)
+        if x == 113:
+            for code in decode(frame):
+                print(code.type)
+                print(code.data.decode('utf-8'))
+        elif x == 27:
+            print("falsy valye")
+            break
+        cv2.imshow('Testing-code-scan', frame)
+    cap.release()
+    cv2.destroyAllWindows()
+    return "12"
+
 
 @app.route("/api/cart", methods=['post'])
 def cart():
