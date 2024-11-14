@@ -6,18 +6,12 @@ from app.model import Category, Product, Role
 
 admin = Admin(app=app, name="My Website", template_mode='bootstrap4', url='/admin')
 
-<<<<<<< HEAD
-#comment
-class ProductView(ModelView):
-=======
-
 class AuthenticatedModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated and current_user.user_role.__eq__(Role.ADMIN)
 
 
 class ProductView(AuthenticatedModelView):
->>>>>>> 7a07f6af37c8f6327d485b210c09f3c5ad33b9ae
     can_view_details = True
     column_display_pk = True
     can_export = True
